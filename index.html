@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tres Monos Capital</title>
+  <meta name="description" content="Tres Monos Capital — thoughtful capital for a different kind of entrepreneur.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --text: #1a1a1a;
+      --text-mid: #444;
+      --text-secondary: #666;
+      --bg: #fafaf8;
+      --bg-alt: #f4f3f0;
+      --accent: #2c2c2c;
+      --border: #e0ddd8;
+      --card-bg: #fff;
+    }
+
+    html {
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+      font-size: 17px;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.4rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: rgba(250, 250, 248, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+    nav.scrolled { border-bottom-color: var(--border); }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-transform: lowercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    /* DOT NAV */
+    .dot-nav {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .dot-nav a {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+      display: block;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .dot-nav a.active {
+      background: var(--text);
+      transform: scale(1.3);
+    }
+
+    /* SNAP SECTIONS */
+    .snap-section {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 6rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+      margin-bottom: 2rem;
+      max-width: 680px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 500;
+    }
+    .hero .subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 520px;
+      line-height: 1.85;
+    }
+    .hero .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--border);
+      animation: float 2s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* INNER CONTAINER */
+    .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 3rem;
+      width: 100%;
+    }
+
+    /* SECTION LABEL */
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+    }
+
+    /* BELIEFS */
+    #beliefs { background: var(--bg); }
+    .beliefs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem 4rem;
+    }
+    .belief h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+    .belief p {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.8;
+    }
+
+    /* QUOTE */
+    #quote { background: var(--bg-alt); }
+    .quote-content {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 2rem;
+    }
+    .quote-content blockquote {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.08rem;
+      font-style: italic;
+      line-height: 2;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+    .quote-content cite {
+      font-style: normal;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* PORTFOLIO */
+    #portfolio { background: var(--bg); }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .portfolio-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2rem;
+      transition: box-shadow 0.3s, transform 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .portfolio-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.06);
+      transform: translateY(-3px);
+    }
+    .portfolio-card .tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 3px;
+      background: var(--bg-alt);
+      color: var(--text-secondary);
+      display: inline-block;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+    .portfolio-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+    }
+    .portfolio-card .description {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+      flex: 1;
+    }
+    .portfolio-card .status {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+    .portfolio-card .card-link {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: gap 0.2s;
+    }
+    .portfolio-card .card-link:hover { gap: 0.5rem; }
+    .portfolio-card .card-link .arrow {
+      transition: transform 0.2s;
+      font-size: 0.9rem;
+    }
+
+    /* TEAM */
+    #team { background: var(--bg-alt); }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+    .team-member h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+    .team-member .role {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.75rem;
+    }
+    .team-member .bio {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .team-member .linkedin-link {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .team-member .linkedin-link:hover { text-decoration: underline; }
+    .team-member .linkedin-link svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* FOOTER */
+    .footer-section {
+      scroll-snap-align: end;
+      background: var(--bg);
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    footer .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    footer .footer-text {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: 1fr; max-width: 480px; }
+    }
+    @media (max-width: 768px) {
+      html { scroll-snap-type: y proximity; }
+      nav { padding: 1.1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      .inner { padding: 0 1.5rem; }
+      .hero { padding: 5rem 1.5rem; }
+      .beliefs-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      footer { padding: 2rem 1.5rem; }
+      .dot-nav { display: none; }
+    }
+    @media (max-width: 480px) {
+      .nav-links a { font-size: 0.75rem; }
+      .hero h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#hero" class="logo">Tres Monos Capital</a>
+    <div class="nav-links">
+      <a href="#beliefs">beliefs</a>
+      <a href="#portfolio">portfolio</a>
+      <a href="#team">team</a>
+    </div>
+  </nav>
+
+  <!-- DOT NAV -->
+  <div class="dot-nav" aria-hidden="true">
+    <a href="#hero" data-section="hero" class="active" title="Home"></a>
+    <a href="#beliefs" data-section="beliefs" title="Beliefs"></a>
+    <a href="#quote" data-section="quote" title="Quote"></a>
+    <a href="#portfolio" data-section="portfolio" title="Portfolio"></a>
+    <a href="#team" data-section="team" title="Team"></a>
+  </div>
+
+  <!-- HERO -->
+  <section class="snap-section" id="hero">
+    <div class="hero">
+      <h1>Looking for a <em>different</em> kind of entrepreneur</h1>
+      <p class="subtitle">
+        We back founders who believe in victory but understand its transience — guided by ethics, integrity, and the communities they serve. First checks of $10K–$50K for B2B and B2C companies using technology to reach their customers.
+      </p>
+    </div>
+    <span class="hero scroll-hint">scroll</span>
+  </section>
+
+  <!-- BELIEFS -->
+  <section class="snap-section" id="beliefs">
+    <div class="inner">
+      <p class="section-label">What we believe</p>
+      <div class="beliefs-grid">
+        <div class="belief">
+          <h3>Community-led solutions</h3>
+          <p>Communities need support to build their own solutions — not someone to come build or sell a solution for them.</p>
+        </div>
+        <div class="belief">
+          <h3>Beyond the standard mould</h3>
+          <p>Entrepreneurs come in all forms. It is too hard for those who don't fit the standard mould, and we want to change that.</p>
+        </div>
+        <div class="belief">
+          <h3>Values over adulation</h3>
+          <p>True victory is one dogged with strong values and stories of perseverance — not stories of adulation or discrimination.</p>
+        </div>
+        <div class="belief">
+          <h3>Thoughtful capital</h3>
+          <p>We are a community of friends and limited partners that steer time, resources, and capital to companies we want to see win.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="snap-section" id="quote">
+    <div class="quote-content">
+      <blockquote>
+        "O'er the door of the sacred Temple<br>
+        They sit in their wisdom the three —<br>
+        The little deaf Monkey,<br>
+        The little dumb Monkey,<br>
+        The Monkey who will not see;<br>
+        With their eyes shut to evil,<br>
+        Ears that hear only the right,<br>
+        Lips that are dumb to scandal,<br>
+        They sit in their silent might"
+      </blockquote>
+      <cite>Author Unknown — The Three Monkeys: Mizaru, Kikazaru, Iwazaru</cite>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section class="snap-section" id="portfolio" style="min-height: auto; padding: 6rem 0;">
+    <div class="inner">
+      <p class="section-label">Portfolio</p>
+      <div class="portfolio-grid">
+        <div class="portfolio-card">
+          <span class="tag">Travel-wear</span>
+          <h3>Kosha</h3>
+          <p class="description">Eco-friendly travel and winter wear designed for extreme conditions. High-performance thermals, puffer jackets, and hard-shells at accessible prices.</p>
+          <a href="https://www.kosha.co/" target="_blank" rel="noopener" class="card-link">kosha.co <span class="arrow">→</span></a>
+        </div>
+        <div class="portfolio-card">
+          <span class="tag">AI &amp; Hiring</span>
+          <h3>Humanly</h3>
+          <p class="description">AI-powered recruiting platform for high-volume hiring. Automates sourcing, screening, scheduling, and interviewing — helping teams hire up to 8× faster. YC W20.</p>
+          <a href="https://www.humanly.io/" target="_blank" rel="noopener" class="card-link">humanly.io <span class="arrow">→</span></a>
+        </div>
+        <div class="portfolio-card">
+          <span class="tag">Fashion &amp; Sustainability</span>
+          <h3>Armoire</h3>
+          <p class="description">Women's clothing rental membership using machine learning to curate contemporary styles. Curbing fashion waste while making high-end wardrobes accessible.</p>
+          <a href="https://armoire.style/" target="_blank" rel="noopener" class="card-link">armoire.style <span class="arrow">→</span></a>
+        </div>
+        <div class="portfolio-card">
+          <span class="tag">Enterprise &amp; Governance</span>
+          <h3>Swae</h3>
+          <p class="description">Collaborative decision-making platform that uses AI and collective intelligence to surface breakthrough ideas and reduce bias in organizations.</p>
+          <a href="https://swae.io/" target="_blank" rel="noopener" class="card-link">swae.io <span class="arrow">→</span></a>
+        </div>
+        <div class="portfolio-card">
+          <span class="tag">EdTech · Acquired</span>
+          <h3>Doyobi</h3>
+          <p class="description">Science and coding education platform for kids. Raised $2.8M seed led by Monk's Hill Ventures. Acquired by ErudiFi in 2024.</p>
+          <p class="status">Acquired by ErudiFi, 2024</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="snap-section" id="team">
+    <div class="inner">
+      <p class="section-label">The three monkeys</p>
+      <div class="team-grid">
+        <div class="team-member">
+          <h3>Kahran Singh</h3>
+          <p class="role">Partner</p>
+          <p class="bio">Operator and investor based in New York. Co-founder of Joyus Studio, former CEO of Vidyanext Learning Studio. Focused on backing underrepresented founders — LGBTQ, BIPOC, and women-led ventures.</p>
+          <a href="https://www.linkedin.com/in/kahrans/" target="_blank" rel="noopener" class="linkedin-link">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+        <div class="team-member">
+          <h3>Sweta Jagirdar</h3>
+          <p class="role">Partner</p>
+          <p class="bio">Technology leader based in New York. Program Manager at Amazon Web Services on the Worldwide Solutions team. Passionate about backing value-driven and non-traditional entrepreneurs.</p>
+          <a href="https://www.linkedin.com/in/sjagirdar/" target="_blank" rel="noopener" class="linkedin-link">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+        <div class="team-member">
+          <h3>Sahil Sagar</h3>
+          <p class="role">Partner</p>
+          <p class="bio">Managing Director at Citi, where he leads Global AI and Operational Platforms for the Services Business. Over 20 years of engineering leadership across financial services and technology.</p>
+          <a href="https://www.linkedin.com/in/sahilsagar/" target="_blank" rel="noopener" class="linkedin-link">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer-section">
+    <footer>
+      <span class="footer-logo">Tres Monos Capital</span>
+      <span class="footer-text">&copy; 2026 Tres Monos Capital</span>
+    </footer>
+  </div>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Dot nav active state
+    const sections = document.querySelectorAll('.snap-section');
+    const dots = document.querySelectorAll('.dot-nav a');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          dots.forEach(d => d.classList.remove('active'));
+          const active = document.querySelector(`.dot-nav a[data-section="${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { threshold: 0.45 });
+
+    sections.forEach(s => observer.observe(s));
+
+    // Hide scroll hint after first scroll
+    let hintHidden = false;
+    window.addEventListener('scroll', () => {
+      if (!hintHidden && window.scrollY > 100) {
+        const hint = document.querySelector('.scroll-hint');
+        if (hint) hint.style.opacity = '0';
+        hintHidden = true;
+      }
+    });
+  </script>
+
+</body>
+</html>
