@@ -135,20 +135,63 @@
       max-width: 520px;
       line-height: 1.85;
     }
-    .hero .scroll-hint {
+    .scroll-hint {
       position: absolute;
       bottom: 2.5rem;
       left: 50%;
       transform: translateX(-50%);
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--border);
-      animation: float 2s ease-in-out infinite;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      opacity: 1;
+      transition: opacity 0.5s;
+      cursor: default;
     }
-    @keyframes float {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(6px); }
+    .scroll-mouse {
+      width: 24px;
+      height: 38px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+    .scroll-dot {
+      width: 4px;
+      height: 7px;
+      background: var(--text-secondary);
+      border-radius: 2px;
+      position: absolute;
+      top: 5px;
+      animation: scrollDot 1.8s ease-in-out infinite;
+    }
+    .scroll-chevrons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+    .scroll-chevrons span {
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-right: 1.5px solid var(--border);
+      border-bottom: 1.5px solid var(--border);
+      transform: rotate(45deg);
+      animation: chevronFade 1.8s ease-in-out infinite;
+    }
+    .scroll-chevrons span:nth-child(2) { animation-delay: 0.2s; }
+    .scroll-chevrons span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes scrollDot {
+      0%   { opacity: 1; top: 5px; }
+      60%  { opacity: 0; top: 20px; }
+      61%  { opacity: 0; top: 5px; }
+      100% { opacity: 1; top: 5px; }
+    }
+    @keyframes chevronFade {
+      0%, 100% { opacity: 0.2; }
+      50%       { opacity: 0.8; }
     }
 
     /* INNER CONTAINER */
@@ -281,6 +324,104 @@
       font-size: 0.9rem;
     }
 
+    /* STATS BAR */
+    .stats-bar {
+      display: flex;
+      gap: 3rem;
+      margin-top: 3.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat-item {}
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.04em;
+    }
+
+    /* PORTFOLIO LOGO */
+    .portfolio-card .company-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+      background: var(--bg-alt);
+      display: block;
+    }
+    .portfolio-card .logo-fallback {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--bg-alt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    /* PITCH SECTION */
+    #pitch { background: var(--bg); }
+    .pitch-content {
+      max-width: 680px;
+    }
+    .pitch-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 400;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+    .pitch-content h2 em {
+      font-style: italic;
+    }
+    .pitch-content p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      max-width: 520px;
+    }
+    .pitch-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--text);
+      padding-bottom: 3px;
+      transition: opacity 0.2s;
+    }
+    .pitch-email:hover { opacity: 0.6; }
+    .pitch-criteria {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .criterion {
+      padding: 0.6rem 1.1rem;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
+    }
+
     /* TEAM */
     #team { background: var(--bg-alt); }
     .team-grid {
@@ -368,6 +509,9 @@
       .hero h1 { font-size: 2rem; }
     }
   </style>
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "e324115364af4485b4e5436eb7f7ab9a"}'></script>
+  <!-- End Cloudflare Web Analytics -->
 </head>
 <body>
 
@@ -378,6 +522,7 @@
       <a href="#beliefs">beliefs</a>
       <a href="#portfolio">portfolio</a>
       <a href="#team">team</a>
+      <a href="#pitch">pitch us</a>
     </div>
   </nav>
 
@@ -388,6 +533,7 @@
     <a href="#quote" data-section="quote" title="Quote"></a>
     <a href="#portfolio" data-section="portfolio" title="Portfolio"></a>
     <a href="#team" data-section="team" title="Team"></a>
+    <a href="#pitch" data-section="pitch" title="Pitch Us"></a>
   </div>
 
   <!-- HERO -->
@@ -397,8 +543,31 @@
       <p class="subtitle">
         We back founders who believe in victory but understand its transience — guided by ethics, integrity, and the communities they serve. First checks of $10K–$50K for B2B and B2C companies using technology to reach their customers.
       </p>
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Companies backed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Acquisition</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">$10–50K</div>
+          <div class="stat-label">First check size</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2019</div>
+          <div class="stat-label">Founded</div>
+        </div>
+      </div>
     </div>
-    <span class="hero scroll-hint">scroll</span>
+    <div class="scroll-hint" id="scrollHint">
+      <div class="scroll-mouse"><div class="scroll-dot"></div></div>
+      <div class="scroll-chevrons">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
   </section>
 
   <!-- BELIEFS -->
@@ -450,30 +619,40 @@
       <p class="section-label">Portfolio</p>
       <div class="portfolio-grid">
         <div class="portfolio-card">
+          <img class="company-logo" src="https://logo.clearbit.com/kosha.co" alt="Kosha" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="logo-fallback" style="display:none">K</div>
           <span class="tag">Travel-wear</span>
           <h3>Kosha</h3>
           <p class="description">Eco-friendly travel and winter wear designed for extreme conditions. High-performance thermals, puffer jackets, and hard-shells at accessible prices.</p>
           <a href="https://www.kosha.co/" target="_blank" rel="noopener" class="card-link">kosha.co <span class="arrow">→</span></a>
         </div>
         <div class="portfolio-card">
+          <img class="company-logo" src="https://logo.clearbit.com/humanly.io" alt="Humanly" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="logo-fallback" style="display:none">H</div>
           <span class="tag">AI &amp; Hiring</span>
           <h3>Humanly</h3>
           <p class="description">AI-powered recruiting platform for high-volume hiring. Automates sourcing, screening, scheduling, and interviewing — helping teams hire up to 8× faster. YC W20.</p>
           <a href="https://www.humanly.io/" target="_blank" rel="noopener" class="card-link">humanly.io <span class="arrow">→</span></a>
         </div>
         <div class="portfolio-card">
+          <img class="company-logo" src="https://logo.clearbit.com/armoire.style" alt="Armoire" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="logo-fallback" style="display:none">A</div>
           <span class="tag">Fashion &amp; Sustainability</span>
           <h3>Armoire</h3>
           <p class="description">Women's clothing rental membership using machine learning to curate contemporary styles. Curbing fashion waste while making high-end wardrobes accessible.</p>
           <a href="https://armoire.style/" target="_blank" rel="noopener" class="card-link">armoire.style <span class="arrow">→</span></a>
         </div>
         <div class="portfolio-card">
+          <img class="company-logo" src="https://logo.clearbit.com/swae.io" alt="Swae" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="logo-fallback" style="display:none">S</div>
           <span class="tag">Enterprise &amp; Governance</span>
           <h3>Swae</h3>
           <p class="description">Collaborative decision-making platform that uses AI and collective intelligence to surface breakthrough ideas and reduce bias in organizations.</p>
           <a href="https://swae.io/" target="_blank" rel="noopener" class="card-link">swae.io <span class="arrow">→</span></a>
         </div>
         <div class="portfolio-card">
+          <img class="company-logo" src="https://logo.clearbit.com/doyobi.com" alt="Doyobi" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="logo-fallback" style="display:none">D</div>
           <span class="tag">EdTech · Acquired</span>
           <h3>Doyobi</h3>
           <p class="description">Science and coding education platform for kids. Raised $2.8M seed led by Monk's Hill Ventures. Acquired by ErudiFi in 2024.</p>
@@ -519,6 +698,27 @@
     </div>
   </section>
 
+  <!-- PITCH -->
+  <section class="snap-section" id="pitch">
+    <div class="inner">
+      <p class="section-label">Work with us</p>
+      <div class="pitch-content">
+        <h2>Building something <em>different?</em><br>We want to hear from you.</h2>
+        <p>We back founders at the earliest stages — before the story is obvious. If you're using technology to solve a real problem for an underserved community, or just building something you believe the world needs, reach out.</p>
+        <a href="mailto:invest@tresmonos.capital" class="pitch-email">
+          invest@tresmonos.capital →
+        </a>
+        <div class="pitch-criteria">
+          <span class="criterion">$10K–$50K first check</span>
+          <span class="criterion">B2B &amp; B2C</span>
+          <span class="criterion">Seed &amp; pre-seed</span>
+          <span class="criterion">Technology-enabled</span>
+          <span class="criterion">Underrepresented founders</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <div class="footer-section">
     <footer>
@@ -553,8 +753,8 @@
     // Hide scroll hint after first scroll
     let hintHidden = false;
     window.addEventListener('scroll', () => {
-      if (!hintHidden && window.scrollY > 100) {
-        const hint = document.querySelector('.scroll-hint');
+      if (!hintHidden && window.scrollY > 80) {
+        const hint = document.getElementById('scrollHint');
         if (hint) hint.style.opacity = '0';
         hintHidden = true;
       }
