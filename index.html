@@ -3,8 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tres Monos Capital</title>
-  <meta name="description" content="Tres Monos Capital — thoughtful capital for a different kind of entrepreneur.">
+  <title>Tres Monos Capital | Seed-Stage Venture Capital</title>
+  <meta name="description" content="Tres Monos Capital backs underrepresented entrepreneurs at the seed stage. First checks of $10K–$50K for B2B and B2C companies using technology. Founded by Kahran Singh, Sweta Jagirdar, and Sahil Sagar.">
+  <meta name="keywords" content="Tres Monos Capital, Tres Monos, seed stage venture capital, early stage investing, underrepresented founders, BIPOC founders, women founders, LGBTQ founders, Kahran Singh, Sweta Jagirdar, Sahil Sagar, tresmonos.capital">
+  <meta name="author" content="Tres Monos Capital">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://tresmonos.capital/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <!-- Open Graph (for link previews on LinkedIn, Slack, WhatsApp etc.) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tresmonos.capital/">
+  <meta property="og:site_name" content="Tres Monos Capital">
+  <meta property="og:title" content="Tres Monos Capital | Seed-Stage Venture Capital">
+  <meta property="og:description" content="Thoughtful capital for a different kind of entrepreneur. We back underrepresented founders at the earliest stages with first checks of $10K–$50K.">
+  <meta property="og:image" content="https://tresmonos.capital/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://tresmonos.capital/og-image.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Tres Monos Capital | Seed-Stage Venture Capital">
+  <meta name="twitter:description" content="Thoughtful capital for a different kind of entrepreneur. First checks of $10K–$50K for B2B and B2C companies using technology.">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Tres Monos Capital",
+    "url": "https://tresmonos.capital",
+    "description": "Tres Monos Capital is a seed-stage venture capital firm backing underrepresented entrepreneurs with first checks of $10,000–$50,000 in B2B and B2C technology companies.",
+    "email": "invest@tresmonos.capital",
+    "foundingDate": "2019",
+    "founders": [
+      { "@type": "Person", "name": "Kahran Singh", "sameAs": "https://www.linkedin.com/in/kahrans/" },
+      { "@type": "Person", "name": "Sweta Jagirdar", "sameAs": "https://www.linkedin.com/in/sjagirdar/" },
+      { "@type": "Person", "name": "Sahil Sagar", "sameAs": "https://www.linkedin.com/in/sahilsagar/" }
+    ],
+    "sameAs": [
+      "https://www.crunchbase.com/organization/tres-monos-capital"
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
@@ -209,7 +251,7 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text-secondary);
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
     }
 
     /* BELIEFS */
@@ -429,6 +471,25 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 2.5rem;
     }
+    .team-member .photo-wrap {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+      background: var(--border);
+    }
+    .team-member .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(100%);
+      transition: filter 0.3s;
+    }
+    .team-member .photo-wrap img:hover {
+      filter: grayscale(0%);
+    }
     .team-member h3 {
       font-family: 'Playfair Display', serif;
       font-size: 1.2rem;
@@ -503,6 +564,9 @@
       .portfolio-grid { grid-template-columns: 1fr; }
       footer { padding: 2rem 1.5rem; }
       .dot-nav { display: none; }
+      /* Team section is too tall for snap on mobile — let it scroll freely */
+      #team { scroll-snap-align: none; min-height: auto; padding: 4.5rem 0; }
+      .section-label { margin-bottom: 1.5rem; }
     }
     @media (max-width: 480px) {
       .nav-links a { font-size: 0.75rem; }
@@ -660,6 +724,7 @@
       <p class="section-label">The three monkeys</p>
       <div class="team-grid">
         <div class="team-member">
+          <div class="photo-wrap"><img src="team-kahran.jpg" alt="Kahran Singh"></div>
           <h3>Kahran Singh</h3>
           <p class="role">Partner</p>
           <p class="bio">Operator and investor based in New York. Co-founder of Joyus Studio, former CEO of Vidyanext Learning Studio. Focused on backing underrepresented founders — LGBTQ, BIPOC, and women-led ventures.</p>
@@ -669,6 +734,7 @@
           </a>
         </div>
         <div class="team-member">
+          <div class="photo-wrap"><img src="team-sweta.jpg" alt="Sweta Jagirdar"></div>
           <h3>Sweta Jagirdar</h3>
           <p class="role">Partner</p>
           <p class="bio">Technology leader based in New York. Program Manager at Amazon Web Services on the Worldwide Solutions team. Passionate about backing value-driven and non-traditional entrepreneurs.</p>
@@ -678,6 +744,7 @@
           </a>
         </div>
         <div class="team-member">
+          <div class="photo-wrap"><img src="team-sahil.jpg" alt="Sahil Sagar"></div>
           <h3>Sahil Sagar</h3>
           <p class="role">Partner</p>
           <p class="bio">Managing Director at Citi, where he leads Global AI and Operational Platforms for the Services Business. Over 20 years of engineering leadership across financial services and technology.</p>
