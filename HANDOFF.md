@@ -11,7 +11,7 @@ A single-page marketing site for a seed-stage venture firm: hero, beliefs, quote
 
 ## Workspace state
 - `index.html` is the whole site: styles and script inline, no build, no dependencies to install.
-- Assets at root: `team-*.jpg` (B&W headshots), `favicon.svg`, `og-image.png`. `source-photos/` holds the originals behind them.
+- Assets at root: `team-*.jpg` (B&W headshots), `favicon.svg`, `og-image.png`.
 - Canonical URL is the custom domain; keep `index.html`, `sitemap.xml` and `robots.txt` consistent if the domain changes.
 - Run: open `index.html` in a browser, or `python3 -m http.server`.
 
@@ -24,4 +24,3 @@ No tests or checker. After a deploy, load the live domain and confirm the page, 
 
 ## Open questions
 - Who maintains the content and how often: unknown.
-- Whether `source-photos/` should stay in a public repo: unknown.
